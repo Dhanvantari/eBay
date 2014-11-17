@@ -65,20 +65,28 @@ home.updateProduct(req.param('updateProduct'),req.param('updateAttribute'),req.p
 res.render('index', { title: 'Updated!' ,message: 'Update Successful.'});
 });
 app.post('/createProduct', function (req, res) {
-	if(!req.param('ProductName') ||!req.param('ProductCost'))
+	if(!req.param('ProductName') ||!req.param('ProductCost')||!req.param('ProductId'))
 	{
 		res.statusCode = 400;
-		console.log('Product name and product cost is compulsory');
-		res.send('Product name and product cost is compulsory');
+		console.log('Fields marked witn star are mandatory');
+		res.send('Fields marked witn star are mandatory');
 		//return res.render('product',{
 			//message:'Error 400: Product name and product cost is compulsory'});
 	}
 	else
 	{
+		if(req.param('IsAuction')=="Yes")
+			{
 	//home.createProduct(req.param('ProductName'),req.param('ProductCondition'),req.param('ProductDetails'),req.param('ProductCost'),req.param('Category'),req.param('AvailableQuantity'),req.param('SellerMembershipNo'),req.param('BidStartTime'),req.param('BidEndTime'),req.param('AuctionFlag'));
- home.createProduct(req.param('ProductName'),req.param('ProductCondition'),req.param('ProductDetails'),req.param('ProductCost'),req.param('Category'),req.param('AvailableQuantity'));
+ home.createProduct(req.param('ProductId'),req.param('ProductName'),req.param('ProductCondition'),req.param('ProductDetails'),req.param('ProductCost'),req.param('Category'),req.param('AvailableQuantity'),req.param('SellerMembershipNo'),req.param('BidStartTime'),req.param('BidEndTime'),req.param('IsAuction'));
 	res.render('index', { title: 'Updated!' ,message: 'Update Successful.'});
-	}
+			}
+		else
+			{
+			home.createProduct(req.param('ProductId'),req.param('ProductName'),req.param('ProductCondition'),req.param('ProductDetails'),req.param('ProductCost'),req.param('Category'),req.param('AvailableQuantity'),req.param('SellerMembershipNo'),"NA","NA",req.param('IsAuction'));
+			res.render('index', { title: 'Updated!' ,message: 'Update Successful.'});
+			}
+			}
 	});
 
 app.get('/displaySellers', function (req, res) {

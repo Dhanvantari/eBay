@@ -70,7 +70,11 @@ else
 	<h1><span class="fa fa-sign-in"></span> Create new Product</h1>
 	
 	<form action="/createProduct" method="post">
-	
+
+<div class="form-group">
+<label>Product Id * : </label>
+<input type="text" name="ProductId"></input>	
+</div>	
 	
 <div class="form-group">
 <label>Product Name * : </label>
@@ -101,7 +105,29 @@ else
 <label>Available Quantity : </label>
 <input type="text" name="AvailableQuantity"></input>	
 </div>
-		<button type="submit" class="btn btn-warning btn-sm">Create</button>
+
+<div class="form-group">
+<label>Seller Membership No. : </label>
+<input type="text" name="SellerMembershipNo"></input>	
+</div>
+
+<label>Will the given product be used for auction?</label>
+<select class="form-control" name="IsAuction" id="IsAuction" onchange="change2()">
+<option value="Yes" selected>Yes</option>
+<option value="No">No</option>
+</select>
+
+<div class="form-group">
+<label>Enter Bid Start Time: </label>
+<input type="text" name="BidStartTime" id="t1"></input>	
+</div>
+
+<div class="form-group">
+<label>Enter Bid Start Time: </label>
+<input type="text" name="BidEndTime" id="t2"></input>	
+</div>
+
+<button type="submit" class="btn btn-warning btn-sm">Create</button>
 	</form>
 	
 
@@ -111,6 +137,29 @@ else
 </div>
 </body>
 <script>
+function change2()
+{
+   
+	var sel=document.getElementById("IsAuction");
+	var a = sel.options[sel.selectedIndex].value;
+	if(a=="No")
+	{
+	document.getElementById("t1").disabled=true;
+	document.getElementById("t2").disabled=true;
+	}
+	else
+	{
+	document.getElementById("t1").disabled=false;
+	document.getElementById("t2").disabled=false;
+	}
+	
+	
+	//document.getElementById("p1").innerHTML="message=";//"The original value of the selected product :"+b; 
+	
+	//window.location="http://localhost:3009/viewCategory/"+a;
+
+}
+
 function change()
 {
    

@@ -7,7 +7,7 @@ function connect()
 		host     : 'localhost',
 		user     : 'root',
 		password : '',
-		database: 'eBay'
+		database: 'cmpe273project' //'eBay'
 	});
 
 	connection.connect();
@@ -57,10 +57,10 @@ function updateProduct(updateProduct,updateAttribute,updateValue)
 	connection.end();
 }
 
-function createProduct(ProductName,ProductCondition,ProductDetails,ProductCost,Category,AvailableQuantity)
+function createProduct(ProductId,ProductName,ProductCondition,ProductDetails,ProductCost,Category,AvailableQuantity,SellerMembershipNo,BidStartTime,BidEndTime,AuctionFlag)
 {
 	var connection=connect();
-	var eQuery = "INSERT INTO Product (ProductName,ProductCondition,ProductDetails,ProductCost,Category,AvailableQuantity) VALUES ('"+ProductName+"', '"+ProductCondition+"', '"+ProductDetails+"', '"+ProductCost+"', '"+Category+"', '"+AvailableQuantity+"')";
+	var eQuery = "INSERT INTO Product (ProductId,ProductName,ProductCondition,ProductDetails,ProductCost,Category,AvailableQuantity,SellerMembershipNo,BidStartTime,BidEndTime,IsAuction) VALUES ('"+ProductId+"','"+ProductName+"', '"+ProductCondition+"', '"+ProductDetails+"', '"+ProductCost+"', '"+Category+"', '"+AvailableQuantity+"', '"+SellerMembershipNo+"', '"+BidStartTime+"', '"+BidEndTime+"', '"+AuctionFlag+"')";
 
 	//var eQuery = "INSERT INTO Product (ProductName,ProductCondition,ProductDetails,ProductCost,Category,AvailableQuantity)) VALUES ('q', 'w', 'e', '0', 'r'); //('"+ProductName+"', '"+ProductCondition+"', '"+ProductDetails+"', '"+ProductCost+"', '"+Category+"', '"+AvailableQuantity+"')";
 //INSERT INTO `eBay`.`Product` (`ProductName`, `ProductCondition`, `ProductDetails`, `ProductCost`, `Category`) VALUES ('q', 'w', 'e', '0', 'r');
